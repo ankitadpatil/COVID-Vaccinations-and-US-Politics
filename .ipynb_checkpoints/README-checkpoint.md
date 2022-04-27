@@ -1,8 +1,12 @@
-# Disparity In COVID Vaccine Across The United States
+# Disparities in COVID Vaccination Across the American Political Divide
 
 ### A data science investigation by Ankita Patil, Jacqueline Simeone, Andy Orfalea and Annie Bishai
 
 ---
+
+![COVID Clusters](GitHub_Public/COVID-Vaccinations-and-US-Politics/graphs/Picture1.png)
+
+![Election Results](GitHub_Public/COVID-Vaccinations-and-US-Politics/graphs/Picture2.png)
 
 # Abstract
 
