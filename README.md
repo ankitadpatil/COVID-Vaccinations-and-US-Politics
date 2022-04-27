@@ -103,6 +103,8 @@ The KMeans model fit the data best with three clusters. The features used in the
 
 **Summary of observations from clustering model:**
 
+![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/cluster0_overtime.png)     ![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/cluster1_overtime.png)     ![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/cluster2_overtime.png)  
+
 *Cluster 0*
 
 - These counties have the highest vaccine hesitancy, but their vaccination rates are in the middle of the pack. This could be due to Cluster 2's vaccination averages being brought down by non-reporting.
@@ -130,6 +132,8 @@ The KMeans model fit the data best with three clusters. The features used in the
 To further investigate the relationship between the COVID vaccine and politics, and because the KMeans clustering model produced clusters with distinct differences in voting patterns without using this as a feature, we wanted to see if we could predict 2020 county election results using COVID vaccine data. In predicting this, our model primarily used COVID vaccine statistics but we also added two county demographic stats we felt were very relevant to COVID-- "Percent of Population over 65 years old" and "SVI Category".
 
 Because Trump won 83% of all counties, the baseline model would be 83% accurate and that’s what we set out to beat.  After trying multiple models, we landed on a Stacking model that ensembled predictions from four different classifying models (K-Nearest Neighbors, Random Forest, Bagging, and Ridge). The Stacking model took predictions from all of those models, and used Logistic Regression to make its ultimate predictions. We ended up with an accuracy of 90.3% so we were able to improve on the baseline model by more than 7%.
+
+![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/classification_conf_matrix.png)
 
 # Conclusions
 
