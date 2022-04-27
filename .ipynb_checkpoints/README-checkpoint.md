@@ -3,9 +3,10 @@
 ### A data science investigation by Ankita Patil, Jacqueline Simeone, Andy Orfalea and Annie Bishai
 
 ---
+**Counties clustered by COVID vaccine, vaccine hesitancy, demographics and socioeconomic data**
+![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/Picture1.png)   
 
-![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/Picture1.png)
-
+**2020 Presidential Election results by county**
 ![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/Picture2.png)
 
 # Abstract
