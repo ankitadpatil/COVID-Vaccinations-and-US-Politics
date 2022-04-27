@@ -4,9 +4,9 @@
 
 ---
 
-![COVID Clusters](GitHub_Public/COVID-Vaccinations-and-US-Politics/graphs/Picture1.png)
+![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/Picture1.png)
 
-![Election Results](GitHub_Public/COVID-Vaccinations-and-US-Politics/graphs/Picture2.png)
+![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/Picture2.png)
 
 # Abstract
 
@@ -126,8 +126,6 @@ The KMeans model fit the data best with three clusters. The features used in the
 
 
 ## Classification Model
-
-*By Andy Orfalea*
 
 To further investigate the relationship between the COVID vaccine and politics, and because the KMeans clustering model produced clusters with distinct differences in voting patterns without using this as a feature, we wanted to see if we could predict 2020 county election results using COVID vaccine data. In predicting this, our model primarily used COVID vaccine statistics but we also added two county demographic stats we felt were very relevant to COVID-- "Percent of Population over 65 years old" and "SVI Category".
 
