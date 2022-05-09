@@ -44,7 +44,7 @@ Because of the close vaccine/election relationships in these data we have observ
 |---------|------|--------|
 | County_State | *string* | County and state |
 | Administered_Dose1_Recip_030121, 090121, 030122 | *float* | Number of people residing in the county who have received at least one dose of a covid vaccine, reported on March 1, 2021, September 1, 2021, and March 1, 2022 |
-| Administered_Dose1_Pop_Pct_030121, 090121, 030122 | float | Percent of Total Pop with at least one dose of a covid vaccine, reported on March 1, 2021, September 1, 2021, and March 1, 2022 |
+| Administered_Dose1_Pop_Pct_030121, 090121, 030122 | *float* | Percent of Total Pop with at least one dose of a covid vaccine, reported on March 1, 2021, September 1, 2021, and March 1, 2022 |
 | Dose1_Pop_Pct_090121_impute | *float* | Same as Dose1_Pop_Pct_090121, but with 0s from non-reporting counties replaced with the mean of that county's March 2021 and March 2022 data |
 | Series_Complete_Pop_Pct_090121, 030122 | *float* | Percent of people who are fully vaccinated (have second dose of a two-dose vaccine or one dose of a single-dose vaccine) based on the jurisdiction and county where recipient lives, reported on September 1, 2021 and March 1, 2022 |
 | Series_Complete_Pop_Pct_090121_impute | *float* | Same as Series_Complete_Pop_Pct_090121, but with 0s from non-reporting counties replaced with the mean of that county's March 2021 and March 2022 data |
@@ -108,7 +108,7 @@ The features used for KMeans model were percent population that were hesitent, s
 **Counties clustered by COVID vaccine, vaccine hesitancy, demographics and socioeconomic data**
 ![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/Picture1.png) 
 
-The following map shows counties with population percent that voted for Donald Trump. Higher the percentage, the redder the county and lower the percentage, bluer the county. As seen below, Cluster 1, with highest vaccination rates, predominantly voted for Joe Biden. 
+The following map shows counties with population percent that voted for Donald Trump. Higher the percentage, redder the county and lower the percentage, bluer the county. As seen below, Cluster 1, with highest vaccination rates, predominantly voted for Joe Biden. 
 
 **2020 Presidential Election results by county**
 ![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/Picture2.png)
