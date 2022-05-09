@@ -3,11 +3,6 @@
 ### A data science investigation by Ankita Patil, Jacqueline Simeone, Andy Orfalea and Annie Bishai
 
 ---
-**Counties clustered by COVID vaccine, vaccine hesitancy, demographics and socioeconomic data**
-![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/Picture1.png)   
-
-**2020 Presidential Election results by county**
-![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/Picture2.png)
 
 # Abstract
 
@@ -35,7 +30,7 @@ Because of the close vaccine/election relationships in these data we have observ
 
 ## Missing Data and Caveats
 
-- In the CDC vaccine-tracking dataset, which contains data reported by vaccine providers, 469 of 3138 counties were missing values for one or more of the dates we sampled. Some causes of missing or incomplete dataa are listed [here](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/distributing/about-vaccine-data.html), but we were not able to find specific reasons for the non-reporting of every county. Based on the distribution of data, we ascertained that the data was not missing at random. A substantial portion of the missing data (74% of the missing values on one of the three dates used) are from counties in Texas, where there is known and extreme [partisanship](https://www.texasattorneygeneral.gov/news/releases/texas-vs-fed-er-al-vac-cine-mandates) around federal COVID policy. Considering this and the fact that the missing vaccination data comprised over 10% of the total observations, we chose not to omit these rows from the analysis or modeling. They are represented as 0.0 in the data.
+- In the CDC vaccine-tracking dataset, which contains data reported by vaccine providers, 469 of 3138 counties were missing values for one or more of the dates we sampled. Some causes of missing or incomplete data are listed [here](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/distributing/about-vaccine-data.html), but we were not able to find specific reasons for the non-reporting of every county. Based on the distribution of data, we ascertained that the data was not missing at random. A substantial portion of the missing data (74% of the missing values on one of the three dates used) are from counties in Texas, where there is known and extreme [partisanship](https://www.texasattorneygeneral.gov/news/releases/texas-vs-fed-er-al-vac-cine-mandates) around federal COVID policy. Considering this and the fact that the missing vaccination data comprised over 10% of the total observations, we chose not to omit these rows from the analysis or modeling. They are represented as 0.0 in the data.
 
 - In order to minimize the impact of missing data, we created a column in which zero (missing) values from the September 2021 vaccination columns are imputed as the mean of March 2021 and March 2022 values. We also added a binary feature for each vaccination checkpoint date in which observations were "flagged" as missing or not. Imputed September values were used in the clustering model along with the "missing" feature, thus mathematically differentiating rows that were imputed from those that contain real vaccination data.
 
@@ -47,60 +42,43 @@ Because of the close vaccine/election relationships in these data we have observ
 
 | Feature | Type | Description |
 |---------|------|--------|
-| County_State | string | County and state |
-| Administered_Dose1_Recip_030121, 090121, 030122 | float | Number of people residing in the county who have received at least one dose of a covid vaccine, reported on March 1, 2021, September 1, 2021, and March 1, 2022 |
+| County_State | *string* | County and state |
+| Administered_Dose1_Recip_030121, 090121, 030122 | *float* | Number of people residing in the county who have received at least one dose of a covid vaccine, reported on March 1, 2021, September 1, 2021, and March 1, 2022 |
 | Administered_Dose1_Pop_Pct_030121, 090121, 030122 | float | Percent of Total Pop with at least one dose of a covid vaccine, reported on March 1, 2021, September 1, 2021, and March 1, 2022 |
-| Dose1_Pop_Pct_090121_impute | float | Same as Dose1_Pop_Pct_090121, but with 0s from non-reporting counties replaced with the mean of that county's March 2021 and March 2022 data |
-| Series_Complete_Pop_Pct_090121, 030122 | float | Percent of people who are fully vaccinated (have second dose of a two-dose vaccine or one dose of a single-dose vaccine) based on the jurisdiction and county where recipient lives, reported on September 1, 2021 and March 1, 2022 |
-| Series_Complete_Pop_Pct_090121_impute | float | Same as Series_Complete_Pop_Pct_090121, but with 0s from non-reporting counties replaced with the mean of that county's March 2021 and March 2022 data |
-| Booster_Doses_Vax_Pct_030122 | float | Percent of people who are fully vaccinated and have received a booster (or additional) dose of a covid vaccine, reported on March 1, 2022 |
-| Missing_March21 | integer | 0 = county reported vaccine data on March 1, 2021; 1 = county did not report, and value is 0
-| Missing_Sept21 | integer | 0 = county reported vaccine data on Sept 1, 2021; 1 = county did not report, and value is 0
-| Missing_March22 | integer | 0 = county reported vaccine data on March 1, 2022; 1 = county did not report, and value is 0
-| Pct_Uninsured | float | Percent of people without health insurance |
-| SVI_Socio | float | Mean social vulnerability percentile, Socioeconomic theme |
-| SVI_HHDisab | float | Mean social vulnerability percentile, Household Composition & Disability theme |
-| SVI_Minority | float | Mean social vulnerability percentile, Minority Status & Language theme |
-| SVI_HousingTransp | float | Mean social vulnerability percentile, Housing Type & Transportation theme |
-| SVI_Overall | float | Mean social vulnerability percentile, overall |
-| SVI_Ctgy | float | Quartile in which the county falls in overall SVI score |
-| Metro_Status | float | 0 = non-metro, 1 = metro
-| Census2019 | float | Total population |
-| Census2019_18to64Pop | float | Population aged 18-64 |
-| Census2019_65PlusPop | float | Population aged 65 and over |
-| Census2019_Pct_65Plus | float | Population aged 65 and over as a percent of total population | 
-| Pct_Hesitant_Feb22 | float | Mean population percentage responding that they would "probably," "probably not," or "definitely not" take a Covid vaccine |
-| Pct_Somewhat_Hesitant_Feb22 | float | Mean population percentage responding that they would "probably" or "probably not" take a Covid vaccine |
-| Pct_Highly_Hesitant_Feb22 | float | Mean population percentage responding that they would "definitely not" take a Covid vaccine |
-| Hesitant_nzip | float | Hesitancy percentage (mean) times number of zip code districts from which mean was taken |
-| Somewhat_Hesitant_nzip | float | Somewhat-hesitant mean times number of zip code districts from which mean was taken |
-| Highly_Hesitant_nzip | float | High-hesitancy mean times number of zip code districts from which mean was taken |
-| Candidate_Won | float | 0 = Joe Biden; 1 = Donald Trump |
-| Pct_Trump | float | Votes for Trump as a percent of total votes |
-| Pct_Biden | float | Votes for Biden as a percent of total votes |
+| Dose1_Pop_Pct_090121_impute | *float* | Same as Dose1_Pop_Pct_090121, but with 0s from non-reporting counties replaced with the mean of that county's March 2021 and March 2022 data |
+| Series_Complete_Pop_Pct_090121, 030122 | *float* | Percent of people who are fully vaccinated (have second dose of a two-dose vaccine or one dose of a single-dose vaccine) based on the jurisdiction and county where recipient lives, reported on September 1, 2021 and March 1, 2022 |
+| Series_Complete_Pop_Pct_090121_impute | *float* | Same as Series_Complete_Pop_Pct_090121, but with 0s from non-reporting counties replaced with the mean of that county's March 2021 and March 2022 data |
+| Booster_Doses_Vax_Pct_030122 | *float* | Percent of people who are fully vaccinated and have received a booster (or additional) dose of a covid vaccine, reported on March 1, 2022 |
+| Missing_March21 | *integer* | 0 = county reported vaccine data on March 1, 2021; 1 = county did not report, and value is 0
+| Missing_Sept21 | *integer* | 0 = county reported vaccine data on Sept 1, 2021; 1 = county did not report, and value is 0
+| Missing_March22 | *integer* | 0 = county reported vaccine data on March 1, 2022; 1 = county did not report, and value is 0
+| Pct_Uninsured | *float* | Percent of people without health insurance |
+| SVI_Socio | *float* | Mean social vulnerability percentile, Socioeconomic theme |
+| SVI_HHDisab | *float* | Mean social vulnerability percentile, Household Composition & Disability theme |
+| SVI_Minority | *float* | Mean social vulnerability percentile, Minority Status & Language theme |
+| SVI_HousingTransp | *float* | Mean social vulnerability percentile, Housing Type & Transportation theme |
+| SVI_Overall | *float* | Mean social vulnerability percentile, overall |
+| SVI_Ctgy | *float* | Quartile in which the county falls in overall SVI score |
+| Metro_Status | *float* | 0 = non-metro, 1 = metro
+| Census2019 | *float* | Total population |
+| Census2019_18to64Pop | *float* | Population aged 18-64 |
+| Census2019_65PlusPop | *float* | Population aged 65 and over |
+| Census2019_Pct_65Plus | *float* | Population aged 65 and over as a percent of total population | 
+| Pct_Hesitant_Feb22 | *float* | Mean population percentage responding that they would "probably," "probably not," or "definitely not" take a Covid vaccine |
+| Pct_Somewhat_Hesitant_Feb22 | *float* | Mean population percentage responding that they would "probably" or "probably not" take a Covid vaccine |
+| Pct_Highly_Hesitant_Feb22 | *float* | Mean population percentage responding that they would "definitely not" take a Covid vaccine |
+| Hesitant_nzip | *float* | Hesitancy percentage (mean) times number of zip code districts from which mean was taken |
+| Somewhat_Hesitant_nzip | *float* | Somewhat-hesitant mean times number of zip code districts from which mean was taken |
+| Highly_Hesitant_nzip | *float* | High-hesitancy mean times number of zip code districts from which mean was taken |
+| Candidate_Won | *float* | 0 = Joe Biden; 1 = Donald Trump |
+| Pct_Trump | *float* | Votes for Trump as a percent of total votes |
+| Pct_Biden | *float* | Votes for Biden as a percent of total votes |
 
 # Modeling 
 
 ## KMeans Clustering
 
-The KMeans model fit the data best with three clusters. The features used in the model, and the mean of each feature by cluster (i.e. the centroid locations), are displayed here:
-
-| Cluster | 0 | 1 | 2 |
-|---------|---|---|---|
-| Pct_Hesitant_Feb22 | 0.293 | 0.176 | 0.252 |
-| Pct_Somewhat_Hesitant_Feb22 | 0.083 | 0.050 | 0.074 |
-| Pct_Highly_Hesitant_Feb22 | 0.210 | 0.126 | 0.178 |
-| Dose1_Pop_Pct_030121 | 13.699 | 15.968 | 2.108 |
-| Dose1_Pop_Pct_090121_impute | 39.939 | 56.148 | 19.306 |
-| Dose1_Pop_Pct_030122 | 50.963 | 70.741 | 43.620 |
-| Series_Complete_Pop_Pct_090121_impute | 34.221 | 50.031 | 21.085 |
-| Series_Complete_Pop_Pct_030122 | 4.706 | 62.176 | 41.196 |
-| Booster_Doses_Vax_Pct_030122 | 41.326 | 46.515 | 34.677 |
-| Missing_Sept21 | 0.002 | 0.037 | 0.619 |
-| SVI_Overall | 0.583 | 0.459 | 0.586
-| Metro_Status | 0.215 | 0.599 | 0.329
-| Census2019_Pct_65Plus | 0.202 | 0.191 | 0.197 |
-
+The features used for KMeans model were percent population that were hesitent, somewhat hesitant & highly hesitant to get vaccinated, percent population that recieved atleast one dose by March 2021, Septembe 2021 & March 2022, percent population that recieved complete series of vaccine by September 2021 & March 2022, percent population that recieved booster dose by March 2022, social vulnerability index (SVI), metro or non-metro status of the counties and percent population above 65 years according to 2019 Census. The KMeans model fit the data best with three clusters.
 
 **Summary of observations from clustering model:**
 
@@ -127,10 +105,17 @@ The KMeans model fit the data best with three clusters. The features used in the
 - These counties have the highest social based on minority status, but comparable overall social vulnerability to Cluster 0.
 - These counties had an above-average rate of Trump election victory, but not as high a rate as Cluster 0.
 
+**Counties clustered by COVID vaccine, vaccine hesitancy, demographics and socioeconomic data**
+![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/Picture1.png) 
+
+The following map shows counties with population percent that voted for Donald Trump. Higher the percentage, the redder the county and lower the percentage, bluer the county. As seen below, Cluster 1, with highest vaccination rates, predominantly voted for Joe Biden. 
+
+**2020 Presidential Election results by county**
+![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/Picture2.png)
 
 ## Classification Model
 
-To further investigate the relationship between the COVID vaccine and politics, and because the KMeans clustering model produced clusters with distinct differences in voting patterns without using this as a feature, we wanted to see if we could predict 2020 county election results using COVID vaccine data. In predicting this, our model primarily used COVID vaccine statistics but we also added two county demographic stats we felt were very relevant to COVID-- "Percent of Population over 65 years old" and "SVI Category".
+To further investigate the relationship between the COVID vaccine and politics, and because the KMeans clustering model produced clusters with distinct differences in voting patterns without using this as a feature, we wanted to see if we could predict 2020 county election results using COVID vaccine data. In predicting this, our model primarily used COVID vaccine statistics but we also added two county demographic stats we felt were very relevant to COVID -- "Percent of Population over 65 years old" and "SVI Category".
 
 Because Trump won 83% of all counties, the baseline model would be 83% accurate and that’s what we set out to beat.  After trying multiple models, we landed on a Stacking model that ensembled predictions from four different classifying models (K-Nearest Neighbors, Random Forest, Bagging, and Ridge). The Stacking model took predictions from all of those models, and used Logistic Regression to make its ultimate predictions. We ended up with an accuracy of 90.3% so we were able to improve on the baseline model by more than 7%.
 
