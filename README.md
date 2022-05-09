@@ -10,6 +10,11 @@ The COVID-19 pandemic emerged at a time of intense political division in the Uni
 
 Even the reddest states have blue counties, and vice versa, and the COVID pandemic has highlighted that these local divides manifest in a consequential way. Maps readily [accessible](https://www.nytimes.com/interactive/2021/us/covid-cases.html?name=styln-coronavirus&region=TOP_BANNER&block=storyline_menu_recirc&action=click&pgtype=Interactive&variant=0_Control&is_new=false) from media outlets reveal local disparities in COVID incidence, vaccination, and other measures. Moreover, policy pertaining to COVID is often determined on municipal and county levels, and the proliferation of [protests](https://bethesdamagazine.com/bethesda-beat/schools/hundreds-of-mcps-students-walk-out-in-protest-of-districts-handling-of-covid-19/) [against various](https://spectrumlocalnews.com/nys/buffalo/news/2021/12/01/group-plans-covid-19-mandate-protest) [COVID](https://www.latimes.com/california/story/2021-11-29/la-me-california-covid-mandates-constitutional-republic) [policies](https://www.kcra.com/article/stanislaus-county-students-parents-protest-covid-19-vaccine-mandate/37888350#) in recent months reveals that on the most local levels Americans are of diverse mindsets. The goal of this project is to explore social and political divides on a more granular level than the red state/blue state binary, using additional social and demographic variables to illuminate, and examine the strength of, these divides.
 
+![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/VaccineRatesTrump.png) ![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/VaccineRatesBiden.png)
+
+![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/DistributionofHesitance.png) ![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/VaccinatedvsHesitant.png)
+
+
 # Hypothesis
 
 We hypothesize that applying a KMeans clustering model to our vaccine- and vaccine hesitancy-related data will reveal stratification within states along similar lines to those seen in the 2020 presidential election. We predict that with the inclusion of demographic and socioeconomic data not directly related to COVID, this model will generally continue to reflect those patterns. This hypothesis is informed by the fact of missing data, which may limit the model's ability to discern other meaningful differences among counties.
@@ -82,7 +87,7 @@ The features used for KMeans model were percent population that were hesitent, s
 
 **Summary of observations from clustering model:**
 
-![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/cluster0_overtime.png)     ![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/cluster1_overtime.png)     ![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/cluster2_overtime.png)  
+![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/cluster0_overtime.png)![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/cluster1_overtime.png)![](https://github.com/ankitadpatil/COVID-Vaccinations-and-US-Politics/blob/main/graphs/cluster2_overtime.png)  
 
 *Cluster 0*
 
